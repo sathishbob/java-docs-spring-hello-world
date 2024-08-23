@@ -26,5 +26,10 @@ pipeline {
                 archiveArtifacts 'target/*.jar'
             }
         }
+        stage('print') {
+            steps {
+                sh "echo hello"
+            }
+        }
     }
 }
