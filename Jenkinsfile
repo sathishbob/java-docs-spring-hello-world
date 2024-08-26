@@ -31,5 +31,15 @@ pipeline {
                 }
             }
         }
+        stage('command execution') {
+            steps {
+                sh 'ls test.txt'
+            }
+            post {
+                failure {
+                    emailext body: "Please check the console output at $BUILD_URL for more information", to: "sathishbabudevops@gmail.com", subject: '$PROJECT_NAME is failled - Build number is $BUILD_NUMBER and build status is $BUILD_STATUS'
+                }
+            }
+        }
     }
 }
